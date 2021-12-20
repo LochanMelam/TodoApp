@@ -1,0 +1,54 @@
+extends layout
+block dropdown 
+    a(class="dropdown-item" href="/signout") Signout 
+block content 
+    form(method="POST" action=`/add${route}` class="row" style="padding-left:300px;padding-right:300px;margin-top:50px;text-center;" )
+        input(class="form-control form-control-lg col-md-10"  name="todoItem" type="text" placeholder="Enter your work")
+        button(type="submit" class="col-md-2 btn btn-success") add
+    br
+    if(route=="/all")
+        div(style="padding-left:600px;padding-right:600px;" class="btn-group btn-group-lg")
+            a(href="/all" class="btn btn-outline-primary active" role="button") all
+            a(href="/active" class="btn btn-outline-primary" role="button") active
+            a(href="/complete" class="btn btn-outline-primary" role="button") complete
+    else if (route=="/active")
+        div(style="padding-left:600px;padding-right:600px;" class="btn-group btn-group-lg")
+            a(href="/all" class="btn btn-outline-primary" role="button") all
+            a(href="/active" class="btn btn-outline-primary active" role="button") active
+            a(href="/complete" class="btn btn-outline-primary" role="button") complete
+    else 
+        div(style="padding-left:600px;padding-right:600px;" class="btn-group btn-group-lg")
+            a(href="/all" class="btn btn-outline-primary" role="button") all
+            a(href="/active" class="btn btn-outline-primary" role="button") active
+            a(href="/complete" class="btn btn-outline-primary active" role="button") complete
+
+    br
+    br
+    if(data && data.length!=0)
+        each todo of data
+            if(editId==todo.id)
+                div(style="padding-left:300px;padding-right:300px;" ) 
+                    form(action=`/edit/${todo.id}${route}` method="POST" class="row")
+                        input(name="todoItem" class="form-control form-control-lg col-md-8" type="text" value=`${todo.item}`)
+                        button(type="submit" class="col-md-2 btn btn-success text-center") confirm
+                        button(type="submit" class="col-md-2 btn btn-danger text-center" formaction=`${route}` formmethod="get" ) cancel
+                br
+            else
+                div(class="row" style="padding-left:300px;padding-right:300px;" ) 
+                    span(class="col-md-9")
+                        if(todo.complete)
+                            del #{todo.item}
+                        else 
+                            span #{todo.item}
+                    span(class="col-md-1")
+                        a(href=`/edit/${todo.id}${route}` role="button" class='btn bg-light fa fa-edit' style='font-size:24px;text-decoration:none;color: orange')
+                    span(class="col-md-1")
+                        a(href=`/delete/${todo.id}${route}` role="button" class='btn bg-light fa fa-remove' style='font-size:24px;text-decoration:none;color: red')
+                    span(class="col-md-1")
+                        form(action=`/complete/${todo.id}${route}` method="post")
+                            if(todo.active)
+                                button(type="submit" class="far fa-square btn bg-light" style="font-size:24px;color: green")
+                            else
+                                button(type="submit" class="fas fa-check-square btn bg-light" style="font-size:24px;color: green")
+                br
+  

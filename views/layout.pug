@@ -1,0 +1,28 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title TodoApp
+        link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css')
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js')
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+        script(src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous')
+        
+    body(class="bg-light")
+        nav(class="navbar navbar-expand-lg navbar-dark bg-dark")
+            a(class="navbar-brand mb-0 h1 " href="/signup")  TodoApp
+            button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation")
+                span(class="navbar-toggler-icon")
+            div(class="collapse navbar-collapse " id="basicExampleNav")
+                ul(class="navbar-nav mr-auto")
+                ul(class="navbar-nav ml-auto badge badge-dark")
+                    li(lass="nav-item dropdown bg-secondary")
+                        a(class="nav-link fa fa-bars bg-dark" href="#" id="navbarDropdown" style="font-size:24px" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") 
+                        div(class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown") 
+                            block dropdown
+
+        block content 
